@@ -37,7 +37,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
       
       - name: Run Fetch Content Script
-        working-directory: apps/website
+        working-directory: .
         env:
           GOOGLE_SA_CLIENT_EMAIL: ${{ secrets.GOOGLE_SA_CLIENT_EMAIL }}
           GOOGLE_SA_PRIVATE_KEY: ${{ secrets.GOOGLE_SA_PRIVATE_KEY }}

@@ -1,7 +1,13 @@
 {
   "Untitled folder": [],
   "test": [],
-  "ourwork": [],
+  "ourwork": [
+    "/ourwork/dashboard.png",
+    "/ourwork/family-icon.png",
+    "/ourwork/city-5-transparent.png",
+    "/ourwork/fav.png",
+    "/ourwork/logo.png"
+  ],
   "testimonials": [
     "/testimonials/sarah.png",
     "/testimonials/ruth-testimonial.mp4",

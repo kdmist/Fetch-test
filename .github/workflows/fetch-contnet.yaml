@@ -51,11 +51,9 @@ jobs:
           branch: fetched-content
           title: "ci: Fetched content from Google Drive"
           base: master
-          merge: true
           delete-branch: true
           add-paths: |
             ./public/**
             ./src/data/media-map.json
              ./.drive-sync.json
-          rebase-strategy: keep  
           

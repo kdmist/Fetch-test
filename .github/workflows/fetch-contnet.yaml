@@ -1,4 +1,4 @@
-name: Fetch Content (Staging Server)
+name: Fetch Content
 
 permissions:
   contents: write

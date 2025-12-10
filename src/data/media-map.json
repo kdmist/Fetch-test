@@ -1,6 +1,11 @@
 {
   "Untitled folder": [],
-  "test": [],
+  "test": [
+    "/test/dashboard.png",
+    "/test/family-icon.png",
+    "/test/city-5-transparent.png",
+    "/test/fav.png"
+  ],
   "ourwork": [
     "/ourwork/dashboard.png",
     "/ourwork/family-icon.png",

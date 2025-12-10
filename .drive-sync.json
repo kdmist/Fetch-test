@@ -4,7 +4,28 @@
       "files": {}
     },
     "test": {
-      "files": {}
+      "files": {
+        "1awHtWDqMOn-FyhVPotJYC9Nbp3aE6iXy": {
+          "name": "dashboard.png",
+          "modifiedTime": "2025-12-10T10:05:05.000Z",
+          "mimeType": "image/png"
+        },
+        "1KevKm0KqbYUV0gi22_0TFl6dS1belfbL": {
+          "name": "family-icon.png",
+          "modifiedTime": "2025-12-10T10:05:05.000Z",
+          "mimeType": "image/png"
+        },
+        "13HGKyzaT8YDqFmoT0RE-eKmZVtHJZAhX": {
+          "name": "city-5-transparent.png",
+          "modifiedTime": "2025-12-10T10:05:05.000Z",
+          "mimeType": "image/png"
+        },
+        "1m1-vCqie7kHhDWOW9xf-bwdr_WqpbwTj": {
+          "name": "fav.png",
+          "modifiedTime": "2025-12-10T09:51:24.000Z",
+          "mimeType": "image/png"
+        }
+      }
     },
     "ourwork": {
       "files": {

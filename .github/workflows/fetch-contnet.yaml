@@ -23,6 +23,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
+          version: 9
           run_install: false
       
       - name: Setup Node.js 
@@ -54,5 +55,7 @@ jobs:
           delete-branch: true
           add-paths: |
             apps/website/public/**
+            apps/website/src/data/media-map.json
+             apps/website/.drive-sync.json
           rebase-strategy: keep  
           

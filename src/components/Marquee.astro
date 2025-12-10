@@ -1,0 +1,160 @@
+---
+
+interface Props {
+  items?: string[];
+  duration?: number;
+  pauseOnHover?: boolean;
+}
+
+const {
+  items = [],
+  duration = 80,
+  pauseOnHover = false,
+} = Astro.props;
+
+const defaultItems = [
+  '120+ organizations on Zakayo',
+  '8,900+ leave approvals processed',
+  '21,000+ procurement quotes',
+  '12,000+ M-Pesa escrow payments',
+  '6,300+ service appointments',
+  '4,500+ health records shared',
+  '5,400+ trusted vendors',
+  '3,200+ family groups',
+];
+
+const computedItems = items?.length ? items : defaultItems;
+---
+
+<div
+  class="nb-wrapper"
+  data-duration={duration}
+  data-pause-on-hover={pauseOnHover}
+>
+  <div class="marquee-frame" id="marquee-frame">
+    <div class="track" id="marquee-track">
+      <div class="group" id="marquee-group-a">
+        {computedItems.map((text, i) => (
+          <div class="cell" data-idx={i} aria-label={text}>{text}</div>
+        ))}
+      </div>
+
+      <div class="group" id="marquee-group-b" aria-hidden="true">
+        {computedItems.map((text, i) => (
+          <div class="cell" data-idx={i} aria-label={text}>{text}</div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+  function initMarquee() {
+    const frame = document.getElementById('marquee-frame') as HTMLDivElement | null;
+    const track = document.getElementById('marquee-track') as HTMLDivElement | null;
+    const groupA = document.getElementById('marquee-group-a') as HTMLDivElement | null;
+
+    if (!frame || !track || !groupA) {
+      return;
+    }
+
+    const wrapper = frame.parentElement;
+    const duration = Number(wrapper?.dataset.duration) || 80;
+    const pauseOnHover = wrapper?.dataset.pauseOnHover === 'true';
+
+    let gsap: any;
+    let tween: any;
+    let currentScroll = 0;
+    let ro: ResizeObserver | null = null;
+    let destroyed = false;
+    let destroyHover: (() => void) | null = null;
+
+    function buildTween(preserveProgress = false) {
+      if (!groupA || !track || !gsap) return;
+      const progress = preserveProgress && tween ? tween.progress() : 0;
+      const W = Math.round(groupA.getBoundingClientRect().width);
+
+      tween?.kill();
+      tween = gsap.fromTo(
+        track,
+        { x: 0 },
+        {
+          x: -W, // move exactly one group width
+          duration,
+          ease: 'none',
+          repeat: -1,
+          overwrite: true,
+          force3D: true,
+        }
+      );
+
+      if (preserveProgress) tween.progress(progress);
+    }
+
+
+    async function init() {
+      const mod = await import('gsap');
+      gsap = (mod as any).gsap || mod;
+
+      buildTween(); // initial
+      // Rebuild seamlessly on resize so no gaps appear
+      ro = new ResizeObserver(() => buildTween(true));
+      ro.observe(groupA);
+    }
+
+    const onScroll = () => {
+      if (destroyed || !tween || !gsap) return;
+      const y = window.pageYOffset || 0;
+      const isDown = y > currentScroll;
+      gsap.to(tween, { timeScale: isDown ? 1 : -1, overwrite: true });
+      currentScroll = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    if (pauseOnHover) {
+      const onEnter = () => tween?.pause();
+      const onLeave = () => tween?.resume();
+      frame.addEventListener('mouseenter', onEnter);
+      frame.addEventListener('mouseleave', onLeave);
+      destroyHover = () => {
+        frame.removeEventListener('mouseenter', onEnter);
+        frame.removeEventListener('mouseleave', onLeave);
+      };
+    }
+
+    // init GSAP after DOM is ready
+    init();
+
+    return () => {
+      destroyed = true;
+      window.removeEventListener('scroll', onScroll);
+      destroyHover?.();
+      tween?.kill?.();
+      ro?.disconnect?.();
+    };
+  }
+
+  // --- Astro Lifecycle Management ---
+
+  // Store the destroy function globally so `astro:before-swap` can access it
+  let destroyMarquee: (() => void) | null = null;
+
+  // Run on initial page load
+  document.addEventListener('DOMContentLoaded', () => {
+    destroyMarquee = initMarquee();
+  }, { once: true });
+
+  // Run on subsequent page navigations
+  document.addEventListener('astro:after-swap', () => {
+    destroyMarquee?.();
+    destroyMarquee = initMarquee();
+  });
+
+  // Clean up before Astro swaps the page
+  document.addEventListener('astro:before-swap', () => {
+    destroyMarquee?.();
+    destroyMarquee = null;
+  }, { once: true });
+</script>

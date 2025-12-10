@@ -1,0 +1,190 @@
+<section class="sticky-cards" aria-label="Zakayo services: Work, Family, Personal">
+  <div class="card-service mb-40" id="card-1">
+    <div class="card-inner rounded-[120px]">
+      <section class="zk-section is-work" id="work" aria-label="Zakayo Work section">
+        <div class="wrap">
+          <div class="region-grid grid">
+            <article class="card-section headline">
+              <div class="section-number-show top-3 right-3">1.</div>
+              <div class="headlines">
+                <h2 class="blk blk-1">MANAGE</h2>
+                <h2 class="blk blk-2">YOUR</h2>
+                <h2 class="blk blk-3 pb-12">WORK</h2>
+                <div class="brush">PAYE NHIF NSSF</div>
+              </div>
+              <p class="sub pt-12" style="text-transform: capitalize;">
+                Zakayo makes Kenyan work simple—run payroll, manage teams, get quotes, and pay
+                trusted vendors in one place.
+              </p>
+            </article>
+
+            <figure class="card-section img-card img-a">
+              <img src="services/hare-work-4.png" alt="Hare" />
+              <figcaption class="badge">
+                <span>WORK • ACTIVITY</span>
+                <span class="arrow">↗</span>
+              </figcaption>
+            </figure>
+
+            <div class="card-section copy-card">
+              <img src="services/hare-work-6.png" alt="Hare" />
+            </div>
+          </div>
+
+          <img src="services/hare-work.png" alt="Zakayo hare character" />
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="card-service mb-40" id="card-2">
+    <div class="card-inner rounded-[120px]">
+      <section class="zk-section is-family" id="family" aria-label="Zakayo Family section">
+        <div class="wrap">
+          <img src="services/hare-family.png" alt="Zakayo hare character" />
+          <div class="region-grid grid">
+            <article class="card-section headline">
+              <div class="section-number-show top-3 right-3">2 .</div>
+              <div class="headlines">
+                <h2 class="blk blk-1">NURTURE</h2>
+                <h2 class="blk blk-2">YOUR</h2>
+                <h2 class="blk blk-3 pb-4 md:pb-10">FAMILY</h2>
+                <div class="brush">SCHOOL HEALTH</div>
+              </div>
+              <p class="sub pt-12">
+                Keep loved ones in sync—calendars, school lists, doctors, and shared expenses all in
+                one friendly place.
+              </p>
+            </article>
+
+            <figure class="card-section img-card img-a">
+              <img src="services/hare-family-2.png" alt="Hare" />
+              <figcaption class="badge">
+                <span>FAMILY • ACTIVITY</span>
+                <span class="arrow">↗</span>
+              </figcaption>
+            </figure>
+
+            <div class="card-section copy-card">
+              <img src="services/hare-family-3.png" alt="Hare" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="card-service mb-40" id="card-3">
+    <div class="card-inner rounded-[120px]">
+      <section class="zk-section is-personal" id="personal" aria-label="Zakayo Personal section">
+        <div class="wrap">
+          <div class="region-grid grid">
+            <article class="card-section headline">
+              <div class="section-number-show top-3 right-3" style="color:#fff">3 .</div>
+              <div class="headlines">
+                <h2 class="blk blk-1">OWN</h2>
+                <h2 class="blk blk-2">YOUR</h2>
+                <h2 class="blk blk-3 pb-10">LIFE</h2>
+                <div class="brush">HABITS & GOALS</div>
+              </div>
+              <p class="sub pt-12">
+                Track habits, budget smarter, and keep your personal docs handy—Zakayo brings your
+                day under control.
+              </p>
+            </article>
+
+            <figure class="card-section img-card img-a">
+              <img src="services/hare-personal-2.png" alt="Hare" />
+              <figcaption class="badge">
+                <span>PERSONAL • ACTIVITY</span>
+                <span class="arrow">↗</span>
+              </figcaption>
+            </figure>
+
+            <div class="card-section copy-card">
+              <img src="services/hare-personal-3.png" alt="Hare" />
+            </div>
+          </div>
+
+          <img src="services/hare-personal.png" alt="Zakayo hare character" />
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+
+<script>
+
+  async function initStickyCards() {
+    const triggers: any[] = [];
+    const gsapMod = await import('gsap');
+    const scrollTriggerMod = await import('gsap/ScrollTrigger');
+
+    const gsap = (gsapMod as any).gsap ?? (gsapMod as any).default ?? gsapMod;
+    const ScrollTrigger =
+      (scrollTriggerMod as any).ScrollTrigger ??
+      (scrollTriggerMod as any).default ??
+      scrollTriggerMod;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const cards = document.querySelectorAll<HTMLElement>('.sticky-cards .card-service');
+
+    cards.forEach((card, idx) => {
+      const inner = card.querySelector<HTMLElement>('.card-inner');
+      if (!inner) {
+        return; 
+      }
+
+      const tl = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: {
+          trigger: card,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+
+      tl.fromTo(
+        inner,
+        { rotateX: -8, scale: 0.985, transformOrigin: '50% 100%' },
+        { rotateX: 8, scale: 1.015 }
+      );
+
+      if (idx < cards.length - 1) {
+        tl.fromTo(
+          inner,
+          { ['--after-opacity' as any]: 0 },
+          { ['--after-opacity' as any]: 0.25 },
+          0.45
+        );
+      }
+
+      triggers.push(tl.scrollTrigger as any);
+    });
+
+    return () => {
+      triggers.forEach((t) => t?.kill());
+    };
+  }
+
+  let destroyStickyCards: (() => void) | null = null;
+
+  // Run on initial page load
+  document.addEventListener('DOMContentLoaded', async () => {
+    destroyStickyCards = await initStickyCards();
+  }, { once: true });
+
+  // Run on subsequent page navigations 
+  document.addEventListener('astro:after-swap', async () => {
+    destroyStickyCards?.();
+    destroyStickyCards = await initStickyCards();
+  });
+
+  document.addEventListener('astro:before-swap', () => {
+    destroyStickyCards?.();
+    destroyStickyCards = null;
+  }, { once: true });
+</script>

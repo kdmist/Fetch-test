@@ -1,0 +1,275 @@
+<section class="relative">
+
+<div class="grid-background"></div>
+  <div class="container mx-auto ">
+    
+      <div class="relative">
+         <svg viewBox="0 0 260 30" class="xl:w-full lg:w-[70%] hidden lg:block h-auto absolute bottom-44 -z-10">
+        <path
+          d="M2 22c30-4 40-4 65-2 18 2 30 3 41 3 23 0 43-5 52-7 5-1 10 0 8 3-1 2-9 3-13 4 10 1 22 2 36 2"
+          fill="none"
+          stroke="#FFFFFF"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+      </svg>
+
+
+    <div class="lg:grid lg:grid-cols-5">
+    <div class="mascot-video-wrapper text-center  mx-auto mt-12 lg:mt-0  lg:col-span-2">
+      <video
+        class="mascot-video "
+        src="/waitlist-hare.webm"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+      ></video>
+    </div>
+
+     <div class="relative hidden lg:block lg:col-span-1">
+    <svg class="mt-96" width="124" height="124" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 47 47"><g clip-path="url(#a)"><path fill="#000" d="m45.138 46.076.308-1.842.89-.558c-2.887.25-4.233-4.242-6.975-5.281-.827-.313-.967.654-.707.947.062.073 1.072.352 1.693.943.53.51 3.088 2.804 2.626 3.387-7.465-.746-14.31-2.526-20.808-6.34C8.924 29.569 1.665 15.524.444.435-.5 22.719 18.23 42.041 40.087 44.162c-.505 1.26-4.598-.087-4.324 1.914h9.375Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M.41 46.076h45.925V.436H.41z"/></clipPath></defs></svg>
+   </div>
+
+    <div class="relative lg:col-span-2 max-w-lg mx-3 md:mx-auto lg:pr-12">
+
+        <div id="status-popup" class="fixed inset-x-0 top-0 z-50 p-4 transition-transform duration-300 transform translate-y-[-100%] opacity-0 pointer-events-none">
+          <div class="max-w-md mx-auto py-3 px-6 rounded-lg shadow-xl text-center text-white font-semibold">
+            </div>
+        </div>
+        <form
+          id="waitlist-form"
+          method="POST"
+          action="https://api.web3forms.com/submit"
+          class=" mx-auto pb-6 lg:mt-96 "
+          novalidate
+        >
+          <input
+            type="hidden"
+            name="access_key"
+            value="4df8515f-2d50-410f-a02a-e5e01cf33a74"
+          />
+
+          <div class="space-y-3">
+            <div
+              class="flex items-center w-full bg-white border-4 border-black rounded-2xl px-4 py-3 md:px-5 md:py-4 gap-1 md:gap-2 lg:gap-1 xl:gap-3 shadow-[6px_6px_0_0_rgba(0,0,0,1)]"
+            >
+           
+                 <img
+                  src="https://flagcdn.com/w40/ke.png"
+                  alt="Kenya flag"
+                  class="w-8 h-6 md:w-10 md:h-7 object-cover "
+                />
+            
+              <span class="text-lg md:text-xl font-semibold tracking-wide">
+                +254
+              </span>
+              <span class="h-8 w-px bg-gray-600 mx-1 xl:mx-3"></span>
+
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                inputmode="numeric"
+                autocomplete="tel-national"
+                placeholder="712 345 678"
+                aria-describedby="phone-help phone-error"
+                class="flex-1 bg-transparent outline-none text-lg md:text-xl tracking-[0.15em] placeholder:text-gray-400"
+              />
+            </div>
+
+            <p
+              id="phone-help"
+              class="text-sm ml-10 text-gray-700 mt-2"
+            >
+              Enter the last <span class="font-bold">9 digits</span> only.
+              Example: <span class="font-mono">712 345 678</span>.
+            </p>
+
+            <p
+              id="phone-error"
+              class="text-sm md:text-base text-red-600 font-semibold"
+              aria-live="polite"
+            ></p>
+          </div>
+          <button
+            type="submit"
+            id="submit-button"
+            class="w-full mt-6 bg-[#ffe666] border-4 border-black rounded-full py-3.5 md:py-4 text-lg md:text-xl font-semibold flex items-center justify-center gap-2 shadow-[6px_6px_0_0_rgba(0,0,0,1)] transition-transform ease-out hover:-translate-y-[3px] hover:shadow-[9px_9px_0_0_rgba(0,0,0,1)] active:translate-y-[1px] active:shadow-[3px_3px_0_0_rgba(0,0,0,1)]"
+          >
+            Join Waitlist
+            <span aria-hidden="true">➜</span>
+          </button>
+        </form>
+     
+ 
+   </div>
+
+     </div>
+     </div>
+
+   
+  </div>
+</section>
+
+<style>
+
+.grid-background {
+  position: absolute;
+  inset: 0; 
+  z-index: -10;
+  background-image: radial-gradient(rgba(12, 12, 12, 0.171) 2.5px, transparent 0);
+  background-size: 64px 64px;      
+  background-position: 0 0;
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 0%,
+    #000 60%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 0%,
+    #000 60%,
+    transparent 100%
+  );
+}
+  .mascot-video-wrapper {
+    width: min(100%, 480px);
+    aspect-ratio: 9 / 16;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    position: relative;
+    --video-crop-top: 8%;
+    --video-crop-bottom: 8%;
+  }
+
+  .mascot-video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    clip-path: inset(var(--video-crop-top) 0 var(--video-crop-bottom) 0);
+    pointer-events: none;
+  }
+
+  @media (min-width: 1024px) {
+    .mascot-video-wrapper {
+      --video-crop-top: 8%;
+      --video-crop-bottom: 8%;
+    }
+  }
+
+  @media (max-width: 996px) {
+.mascot-video-wrapper {
+    width: min(100%, 180px);
+  }
+
+  }
+
+    @media (max-width: 540px) {
+.mascot-video-wrapper {
+    width: min(100%, 150px);
+  }
+
+  }
+ 
+</style>
+
+
+  <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('#waitlist-form');
+        const phoneInput = document.querySelector('#phone');
+        const errorEl = document.querySelector('#phone-error');
+        const submitButton = document.querySelector('#submit-button');
+        const popupContainer = document.querySelector('#status-popup');
+        const popupMessage = popupContainer.querySelector('div');
+
+        if (!form || !phoneInput || !errorEl || !submitButton || !popupContainer || !popupMessage) return;
+
+        
+        const showPopup = (message, isSuccess) => {
+          popupMessage.textContent = message;
+          
+          if (isSuccess) {
+            popupMessage.className = 'max-w-md mx-auto py-3 px-6 rounded-lg shadow-xl text-center text-white font-semibold bg-green-500';
+          } else {
+            popupMessage.className = 'max-w-md mx-auto py-3 px-6 rounded-lg shadow-xl text-center text-white font-semibold bg-red-500';
+          }
+          
+          popupContainer.classList.remove('translate-y-[-100%]', 'opacity-0', 'pointer-events-none');
+          popupContainer.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+
+          
+          setTimeout(() => {
+            popupContainer.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+            popupContainer.classList.add('translate-y-[-100%]', 'opacity-0', 'pointer-events-none');
+          }, 4000);
+        };
+
+
+        // Allow only digits and limit to 9
+        phoneInput.addEventListener('input', () => {
+          // Strip non-digits
+          let digits = phoneInput.value.replace(/\D/g, '');
+          // Limit to 9 digits
+          digits = digits.slice(0, 9);
+          phoneInput.value = digits;
+          errorEl.textContent = '';
+        });
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault(); 
+
+          const digits = phoneInput.value.replace(/\D/g, '');
+
+          if (digits.length !== 9) {
+            errorEl.textContent =
+              'Please enter all 9 digits of your Kenyan mobile number.';
+            phoneInput.focus();
+            return;
+          } else {
+            errorEl.textContent = '';
+          }
+
+          
+          submitButton.disabled = true;
+          const originalText = submitButton.innerHTML;
+          submitButton.innerHTML = 'Submitting...';
+
+          const formData = new FormData(form);
+
+          const fullPhoneNumber = `+254${digits}`;
+          formData.set('phone', fullPhoneNumber);
+
+          try {
+            const response = await fetch(form.action, {
+              method: 'POST',
+              body: formData,
+              headers: {
+                'Accept': 'application/json' 
+              }
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+              showPopup('🎉 Thanks! You\'ve joined the waitlist!', true);
+              form.reset();
+            } else {
+              
+              const errorMessage = data.message || 'Submission failed. Please try again.';
+              showPopup(` Error: ${errorMessage}`, false);
+            }
+          } catch (error) {
+            console.error('Submission error:', error);
+            showPopup(' Network error. Check your connection and try again.', false);
+          } finally {
+            
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+          }
+        });
+      });
+    </script>

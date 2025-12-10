@@ -1,0 +1,114 @@
+---
+interface Props {
+  src?: string;
+  poster?: string;
+}
+
+const {
+  src = '/dashboard-preview.mp4',
+  poster = '/dashboard.png',
+} = Astro.props;
+---
+
+<section class="relative isolate bg-amber-100 rounded-t-[80px] -mt-6">
+  <div class="mx-auto max-w-5xl px-4 pb-16 pt-10">
+    <div
+      class="relative aspect-video overflow-hidden rounded-[24px] md:rounded-[28px] lg:rounded-[32px]
+                shadow-[0_16px_60px_rgba(0,0,0,0.20)] ring-1 ring-black/10 bg-neutral-100/30"
+    >
+      <img
+        id="banner-poster"
+        src={poster}
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover transition-opacity duration-500"
+        style="opacity: 1;"
+        loading="eager"
+        decoding="async"
+      />
+
+      <video
+        id="banner-video"
+        class="absolute inset-0 h-full w-full object-cover"
+        poster={poster}
+        autoplay
+        muted
+        playsinline
+        loop
+        preload="metadata"
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+
+      <div class="pointer-events-none absolute inset-0 grid place-items-center">
+        <div
+          class="h-16 w-16 md:h-18 md:w-18 lg:h-20 lg:w-20 rounded-full bg-black/40 backdrop-blur-sm
+                    ring-1 ring-white/30 shadow-xl flex items-center justify-center"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="h-7 w-7 md:h-8 md:w-8 fill-white">
+            <path d="M8 5v14l11-7z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <svg
+        class="pointer-events-none absolute -bottom-2 left-3 h-24 w-72 opacity-30 text-amber-50"
+        viewBox="0 0 400 120"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          d="M0,120 C30,60 60,60 90,120 C120,60 150,60 180,120 C210,60 240,60 270,120 C300,60 330,60 360,120 L0,120 Z"
+        />
+      </svg>
+      <svg
+        class="pointer-events-none absolute -bottom-3 right-3 h-28 w-80 opacity-30 text-amber-50"
+        viewBox="0 0 400 120"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          d="M0,120 C30,60 60,60 90,120 C120,60 150,60 180,120 C210,60 240,60 270,120 C300,60 330,60 360,120 L0,120 Z"
+        />
+      </svg>
+    </div>
+  </div>
+
+  <div
+    class="pointer-events-none absolute inset-0
+              bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,.7),rgba(255,255,255,0)_40%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,.5),rgba(255,255,255,0)_30%)]
+              mix-blend-overlay opacity-30"
+  >
+  </div>
+</section>
+
+<script>
+  function setupVideoPlayer() {
+    const videoEl = document.getElementById('banner-video') as HTMLVideoElement | null;
+    const posterEl = document.getElementById('banner-poster') as HTMLElement | null;
+
+    if (!videoEl || !posterEl) {
+      return; 
+    }
+
+    const onCanPlay = () => {
+      if (posterEl) {
+        posterEl.style.opacity = '0'; // Fades out the poster
+      }
+      videoEl.play?.().catch(() => {
+        // Autoplay was prevented by the browser
+      });
+    };
+
+    if (videoEl.readyState >= 3) {
+      onCanPlay();
+    } else {
+      videoEl.addEventListener('canplay', onCanPlay, { once: true });
+    }
+  }
+
+  // Run the script on initial page load
+  document.addEventListener('DOMContentLoaded', setupVideoPlayer, { once: true });
+
+  //  run it after Astro's view transitions
+  document.addEventListener('astro:after-swap', setupVideoPlayer);
+</script>

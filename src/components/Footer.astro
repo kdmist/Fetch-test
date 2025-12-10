@@ -1,0 +1,63 @@
+---
+import SociaLIcon from './SociaLIcon.astro'; 
+
+const currentYear = new Date().getFullYear();
+const socialIcons = [
+  { link: '/', title: 'fb', icon: 'fab fa-facebook' },
+  { link: '/', title: 'ig', icon: 'fab fa-instagram' },
+  { link: '/', title: 'twitter', icon: 'fab fa-x-twitter' },
+  { link: '/', title: 'linkedin', icon: 'fab fa-linkedin-in' }
+];
+---
+
+<section class="bg-[#4F67FF] text-black antialiased pb-12 pt-12 sm:pb-16">
+  <div class="relative mx-auto max-w-[1100px] px-4">
+    <div class="absolute left-6 right-6 -bottom-3 h-6 bg-black rounded-[28px]"></div>
+
+    <footer
+      class="relative z-10 rounded-[28px] border-4 border-black bg-white shadow-[10px_10px_0_0_#000]"
+    >
+      <div class="px-6 sm:px-10 pt-8 sm:pt-10">
+    
+      </div>
+
+      <div class="px-6 sm:px-10 pb-8 sm:pb-10 mt-8">
+        <div
+          class="rounded-[18px] border-4 border-black bg-[#D9FF4D] shadow-[8px_8px_0_0_#000] p-6 sm:p-8"
+        >
+          <div class="grid md:grid-cols-2 gap-6 items-center">
+            <p class=" text-center md:text-left font-extrabold text-3xl"> Want Early Access?</p>
+            
+              <a
+                href="/waitlist"
+                class="shrink-0 text-lg inline-flex items-center justify-center font-extrabold px-6 py-4 rounded-md border-4 border-black bg-black text-white shadow-[6px_6px_0_0_#000] transition-transform hover:-translate-x-[2px] hover:-translate-y-[2px] active:translate-x-0 active:translate-y-0"
+              >
+               Join Waitlist <span class="ml-2"> ➜</span>
+              </a>
+       
+          </div>
+        </div>
+      </div>
+
+      <div class="px-6 sm:px-10 pb-8 sm:pb-10">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+          <div class="w-full md:w-auto flex justify-center">
+            <img src="/logo.png" alt="Zakayo" class="w-[160px] md:w-[200px]" />
+          </div>
+
+          <div class="w-full md:w-auto flex justify-center">
+            {socialIcons.map((socialIcon) => (
+              <SociaLIcon socialIcon={socialIcon} />
+            ))}
+          </div>
+        </div>
+
+        <div class="mt-10 md:mt-14 w-4/5 mx-auto h-0 border-t-4 border-black"></div>
+
+        <p class="mt-8 text-center text-[clamp(.95rem,2.2vw,1.05rem)]">
+          © {currentYear} Zakayo.ke — All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </div>
+</section>

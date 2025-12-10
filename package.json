@@ -1,0 +1,28 @@
+{
+  "name": "website",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port 4390 --strictPort",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 4390 --strictPort",
+    "astro": "astro",
+    "fetch:drive": "node -r dotenv/config scripts/fetch-images.ts"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.5.0",
+    "@astrojs/svelte": "^7.2.2",
+
+    "@tailwindcss/vite": "^4.1.16",
+    "astro": "^5.13.7",
+    "dotenv": "^17.2.3",
+    "googleapis": "^167.0.0",
+    "gsap": "^3.13.0",
+    "protobufjs": "^7.5.4",
+    "rellax": "^1.12.1",
+    "svelte": "^5.43.5",
+    "tailwindcss": "^4.1.16",
+    "typescript": "^5.9.3",
+    "zone.js": "^0.15.1"
+  }
+}

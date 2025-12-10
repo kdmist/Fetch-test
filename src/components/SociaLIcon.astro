@@ -1,0 +1,20 @@
+---
+interface Props {
+  socialIcon: { 
+    link: string; 
+    title: string; 
+    icon: string;
+  };
+}
+const { socialIcon } = Astro.props;
+---
+
+<a
+  href={socialIcon.link}
+  aria-label={socialIcon.title}
+  class="mr-3 last:mr-0 inline-flex items-center justify-center w-12 h-12 rounded-full border-4 border-black bg-[#D9FF4D] text-black shadow-[6px_6px_0_0_#000] transition-transform hover:-translate-x-[2px] hover:-translate-y-[2px] active:translate-x-0 active:translate-y-0"
+>
+  <span class="text-2xl leading-none">
+    <i class={socialIcon.icon}></i>
+  </span>
+</a>

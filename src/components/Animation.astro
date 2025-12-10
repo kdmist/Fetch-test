@@ -1,0 +1,41 @@
+---
+
+---
+
+<script >
+  import Rellax from 'rellax';
+
+  let instance: any;
+
+  const init = () => {
+
+    if (instance) {
+      instance.destroy();
+      instance = undefined;
+    }
+
+    // only initialize if there's at least one target on the page
+    if (document.querySelector('.rellax')) {
+      instance = new Rellax('.rellax', {
+        speed: -2,
+        center: false,
+      });
+    }
+  };
+
+  // initial load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
+
+  // handle Astro view transitions 
+  document.addEventListener('astro:before-swap', () => {
+    if (instance) {
+      instance.destroy();
+      instance = undefined;
+    }
+  });
+  document.addEventListener('astro:after-swap', init);
+</script>

@@ -1,0 +1,582 @@
+---
+type Slide = {
+  src: string;
+  poster: string;
+  name: string;
+  title: string;
+  rating: number; 
+};
+
+const slides: Slide[] = [
+  {
+    src: '/testimonials/jackline-testimonial.mp4',
+    poster: '/testimonials/sarah.png',
+    name: 'Sarah Atieno',
+    title: 'CEO at Safaricom',
+    rating: 5
+  },
+  {
+    src: '/testimonials/edwin-testimonial.mp4',
+    poster: '/testimonials/evans.png',
+    name: 'Edwin Koech',
+    title: 'Founder, Voi Wildlife Hotel',
+    rating: 5
+  },
+  {
+    src: '/testimonials/ruth-testimonial.mp4',
+    poster: '/testimonials/sarah.png',
+    name: 'Ruth Wanjiku',
+    title: 'Manager, Kilifi Ward Health',
+    rating: 4
+  },
+  {
+    src: '/testimonials/sarah-testimonial.mp4',
+    poster: '/testimonials/sarah.png',
+    name: 'Jackline Kwamboka',
+    title: "Owner of Kwamboka's Boutique and Spar",
+    rating: 5
+  }
+];
+
+const initialState = {
+  current: 0,
+  activeMuted: true,
+  ready: slides.map(() => false)
+};
+---
+
+<section class="py-10 sm:py-12 lg:py-16 bg-amber-100 px-2 md:px-0" id="testimonials">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="grid gap-8 lg:grid-cols-2 items-start">
+      <div class="flex flex-col gap-10">
+        <div
+          class="relative rounded-[28px] border-[3.5px] border-black bg-white shadow-[10px_10px_0_#000] p-6 pt-12"
+        >
+          <div
+            class="absolute -top-6 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 rounded-full border-[3.5px] border-black bg-[#0DBA63] md:px-5 px-2 py-2.5"
+          >
+            <svg
+              class="h-7 w-7 text-white hidden xs:block"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M19.903 8.586a.75.75 0 01.547.88l-2.162 6.488a.75.75 0 01-1.38-.46l2.162-6.488a.75.75 0 01.831-.42zm-5.44 1.764a.75.75 0 011.06 0l2.808 2.808a.75.75 0 01-1.06 1.06l-2.808-2.807a.75.75 0 010-1.06zM13 1.5a.75.75 0 01.75.75v3.468a.75.75 0 01-1.5 0V2.25A.75.75 0 0113 1.5zM3.44 12.633a.75.75 0 01.88-.547l6.488 2.162a.75.75 0 01-.46 1.38l-6.488-2.162a.75.75 0 01-.42-.83z"
+              ></path>
+              <path
+                fill-rule="evenodd"
+                d="M11.642 2.373a.75.75 0 01.597.288l4.455 5.568a.75.75 0 01-.99 1.118l-3.328-4.16-2.58 3.224a.75.75 0 01-1.206-.134L4.01 1.953a.75.75 0 011.082-.823l4.31 4.925L11.53 2.4a.75.75 0 01.111-.027zM7.52 14.53a.75.75 0 01.666-.023l3.415 1.83a.75.75 0 010 1.33l-3.415 1.83a.75.75 0 01-.666-.024l-3.37-2.31a.75.75 0 010-1.28L7.52 14.53z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            <span class="font-extrabold md:text-2xl text-white tracking-tight">Why Zakayo ?</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
+            <div class="rounded-xl border-[3px] border-black bg-[#FDFBF4] p-3 text-center">
+              <p class="font-bold text-black">Leave</p>
+              <p class="font-black text-2xl text-black tracking-tight">
+                <i class="fas fa-check"></i>
+              </p>
+            </div>
+            <div class="rounded-xl border-[3px] border-black bg-[#FDFBF4] p-3 text-center">
+              <p class="font-bold text-black">Payroll</p>
+              <p class="font-black text-2xl text-black tracking-tight">
+                <i class="fas fa-check"></i>
+              </p>
+            </div>
+            <div class="rounded-xl border-[3px] border-black bg-[#FDFBF4] p-3 text-center">
+              <p class="font-bold text-black">Tasks</p>
+              <p class="font-black text-2xl text-black tracking-tight">
+                <i class="fas fa-check"></i>
+              </p>
+            </div>
+            <div class="rounded-xl border-[3px] border-black bg-[#FDFBF4] p-3 text-center">
+              <p class="font-bold text-black">Shop</p>
+              <p class="font-black text-2xl text-black tracking-tight">
+                <i class="fas fa-check"></i>
+              </p>
+            </div>
+          </div>
+
+          <p class="mt-6 text-center text-lg font-bold text-black/80">All these for free</p>
+        </div>
+
+        <div
+          class="rounded-[28px] border-[3.5px] border-black bg-[#114A2B] shadow-[10px_10px_0_#000] p-6 sm:p-8"
+        >
+          <h3 class="font-black text-4xl text-white">Easy to use</h3>
+          <div class="mt-6 flex flex-col gap-6">
+            <div class="flex items-center gap-4">
+              <div
+                class="shrink-0 h-16 w-16 flex items-center justify-center rounded-full border-[3.5px] border-black bg-[#F2D21B]"
+              >
+                <svg
+                  class="h-8 w-8 text-black"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2.5"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.82m5.84-2.56a14.98 14.98 0 00-11.38-6.16M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p class="font-bold text-xl text-white">Sign up in Seconds</p>
+                <p class="text-sm text-white/80">
+                  Don't believe us? <a href="/" class="underline font-semibold">Try it yourself</a>
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="shrink-0 h-16 w-16 flex items-center justify-center rounded-full border-[3.5px] border-black bg-[#F2D21B]"
+              >
+                <svg
+                  class="h-8 w-8 text-black"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2.5"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p class="font-bold text-xl text-white">Confirm your Number</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="shrink-0 h-16 w-16 flex items-center justify-center rounded-full border-[3.5px] border-black bg-[#F2D21B]"
+              >
+                <svg
+                  class="h-8 w-8 text-black"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2.5"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p class="font-bold text-xl text-white">Launch your Dashboard</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="relative rounded-[28px] border-[3.5px] border-black bg-[#F2D21B]
+               shadow-[10px_10px_0_#000] px-5 sm:px-8 lg:px-10 pt-7 pb-8 overflow-hidden"
+        id="testimonials-slider"
+      >
+        <h2
+          class="text-center font-black tracking-tight text-[#114A2B] text-3xl sm:text-4xl lg:text-5xl"
+        >
+          Hear it from them
+        </h2>
+
+        <div class="relative mt-6 lg:mt-8">
+          <button
+            type="button"
+            class="hidden sm:flex absolute left-2 lg:-left-4 top-1/2 -translate-y-1/2
+                   z-20 pointer-events-auto h-10 w-10 items-center justify-center
+                   rounded-full bg-[#FFF59A] border-[3px] border-black
+                   shadow-[6px_6px_0_#000] hover:translate-x-0.5 transition-transform"
+            id="testimonial-prev"
+            aria-label="Previous testimonial"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="h-5 w-5 fill-black pointer-events-none"
+              aria-hidden="true"
+            >
+              <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="hidden sm:flex absolute right-2 lg:-right-4 top-1/2 -translate-y-1/2
+                   z-20 pointer-events-auto h-10 w-10 items-center justify-center
+                   rounded-full bg-[#FFF59A] border-[3px] border-black
+                   shadow-[6px_6px_0_#000] hover:-translate-x-0.5 transition-transform"
+            id="testimonial-next"
+            aria-label="Next testimonial"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="h-5 w-5 fill-black pointer-events-none"
+              aria-hidden="true"
+            >
+              <path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"></path>
+            </svg>
+          </button>
+
+          <div class="overflow-hidden w-full">
+            <div
+              class="flex transition-transform duration-500"
+              id="testimonial-track"
+              style={`transform: translateX(-${initialState.current * 100}%);`}
+            >
+              {
+                slides.map((s, i) => (
+                  <div class="basis-full shrink-0 min-w-0">
+                    <div
+                      class="mx-auto flex flex-col items-center
+                 rounded-[20px] border-[3px] border-black bg-[#FFE87A]
+                 p-3 sm:p-4 md:p-8 shadow-[6px_6px_0_#000] max-w-full"
+                    >
+                      <div
+                        class="testimonial-video-wrapper relative overflow-hidden rounded-[18px] border-[3px] border-black w-full"
+                        data-index={i}
+                        style={`
+                          /* Force a consistent height for all videos */
+                          height: var(--hmax, 35vh);
+                        `}
+                      >
+                        <img
+                          src={s.poster}
+                          alt=""
+                          class="testimonial-poster absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
+                          data-index={i}
+                          style={`opacity: ${initialState.ready[i] ? 0 : 1}`}
+                          loading="eager"
+                          decoding="async"
+                        />
+                        <video
+                          class="testimonial-video absolute inset-0 h-full w-full object-cover"
+                          data-index={i}
+                          poster={s.poster}
+                          playsinline
+                          loop
+                          preload="metadata"
+                          autoplay={i === initialState.current}
+                          muted={i !== initialState.current || initialState.activeMuted}
+                        >
+                          <source src={s.src} type="video/mp4" />
+                        </video>
+
+                        <button
+                          type="button"
+                          class="testimonial-mute-toggle absolute right-3 top-3 z-10 rounded-lg bg-white border-[3px] border-black
+                               shadow-[4px_4px_0_#000] p-2 text-black hover:-translate-y-0.5 transition-transform"
+                          data-index={i}
+                          aria-label={
+                            i === initialState.current
+                              ? initialState.activeMuted
+                                ? 'Unmute'
+                                : 'Mute'
+                              : 'Only available on active slide'
+                          }
+                          aria-pressed={!initialState.activeMuted}
+                        >
+                          <svg
+                            class:list={[
+                              'icon-muted h-5 w-5 fill-black pointer-events-none',
+                              {
+                                hidden:
+                                  i === initialState.current && !initialState.activeMuted
+                              }
+                            ]}
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path d="M3 10v4h4l5 5V5L7 10H3zm13.59 1L22 6.59 20.59 5 17 8.59 13.41 5 12 6.41 15.59 10 12 13.59 13.41 15 17 11.41 20.59 15 22 13.59 16.41 8z" />
+                          </svg>
+                          <svg
+                            class:list={[
+                              'icon-unmuted h-5 w-5 fill-black pointer-events-none',
+                              {
+                                hidden:
+                                  i !== initialState.current || initialState.activeMuted
+                              }
+                            ]}
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2c0-1.77-1.02-3.29-2.5-4.03v8.06A4.495 4.495 0 0016.5 12zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+                          </svg>
+                        </button>
+                      </div>
+                      <div
+                        class="mx-auto z-10 -mt-4 mb-4 inline-flex items-center gap-1 rounded-full
+                             bg-[#0DBA63] px-3 py-1 border-[3px] border-black
+                             shadow-[4px_4px_0_#000]"
+                        aria-label={`Rating ${s.rating} out of 5`}
+                      >
+                        {Array(5)
+                          .fill(0)
+                          .map((_, k) => (
+                            <svg
+                              viewBox="0 0 24 24"
+                              class:list={[
+                                'h-4 w-4 stroke-black stroke-[1.5]',
+                                k < s.rating ? 'fill-yellow-300' : 'fill-white'
+                              ]}
+                              aria-hidden="true"
+                            >
+                              <path d="M12 .587l3.668 7.431L24 9.168l-6 5.853 1.417 8.262L12 18.896l-7.417 4.387L6 15.021 0 9.168l8.332-1.15z" />
+                            </svg>
+                          ))}
+                      </div>
+                      <div class="text-center">
+                        <h3 class="font-extrabold text-2xl sm:text-3xl text-black tracking-tight">
+                          {s.name}
+                        </h3>
+                        <p class="mt-1 text-sm sm:text-base text-black/80">{s.title}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="mt-4 flex items-center justify-center gap-3">
+            {
+              slides.map((_, i) => (
+                <button
+                  type="button"
+                  class:list={[
+                    'testimonial-dot h-3.5 w-3.5 rounded-full border-[3px] border-black shadow-[3px_3px_0_#000]',
+                    i === initialState.current ? 'bg-[#114A2B]' : 'bg-white'
+                  ]}
+                  data-index={i}
+                  aria-label={`Go to slide ${i + 1}`}
+                  aria-current={i === initialState.current ? 'true' : 'false'}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </div>
+      </div>
+
+    <div
+      class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-[20px] border-[3.5px] border-black bg-[#D9EAB6] shadow-[10px_10px_0_#000] px-6 py-5"
+    >
+      <p class="text-center sm:text-left font-bold text-xl text-black">
+        Have more for less. Guaranteed .
+      </p>
+      <a
+        href="/try"
+        class="inline-block shrink-0 rounded-xl border-[3.5px] border-black bg-[#F2D21B] px-8 py-3.5 font-extrabold text-black shadow-[6px_6px_0_#000] transition-transform hover:-translate-y-1 hover:translate-x-1"
+      >
+        Try for free &gt;
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    .transition-transform {
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  function initTestimonials() {
+    const slider = document.getElementById(
+      'testimonials-slider'
+    ) as HTMLDivElement | null;
+    if (!slider) return null;
+
+    const track = slider.querySelector('#testimonial-track') as HTMLDivElement | null;
+    const prevButton = slider.querySelector(
+      '#testimonial-prev'
+    ) as HTMLButtonElement | null;
+    const nextButton = slider.querySelector(
+      '#testimonial-next'
+    ) as HTMLButtonElement | null;
+    const vids = slider.querySelectorAll(
+      '.testimonial-video'
+    ) as NodeListOf<HTMLVideoElement>;
+    const posters = slider.querySelectorAll(
+      '.testimonial-poster'
+    ) as NodeListOf<HTMLImageElement>;
+    const muteButtons = slider.querySelectorAll(
+      '.testimonial-mute-toggle'
+    ) as NodeListOf<HTMLButtonElement>;
+    const dots = slider.querySelectorAll(
+      '.testimonial-dot'
+    ) as NodeListOf<HTMLButtonElement>;
+
+    if (
+      !track ||
+      !prevButton ||
+      !nextButton ||
+      vids.length === 0 ||
+      dots.length === 0
+    ) {
+      return null;
+    }
+
+    const numSlides = vids.length;
+    let current = 0;
+    let activeMuted = true;
+    let ready: boolean[] = Array(numSlides).fill(false);
+
+
+
+    const clampIndex = (i: number) => (i + numSlides) % numSlides;
+
+    function updateMuteIcons() {
+      muteButtons.forEach((btn, idx) => {
+        const isMuted = idx !== current || activeMuted;
+        const iconMuted = btn.querySelector('.icon-muted');
+        const iconUnmuted = btn.querySelector('.icon-unmuted');
+
+        if (iconMuted) iconMuted.classList.toggle('hidden', !isMuted);
+        if (iconUnmuted) iconUnmuted.classList.toggle('hidden', isMuted);
+
+        btn.setAttribute(
+          'aria-label',
+          idx === current
+            ? activeMuted
+              ? 'Unmute'
+              : 'Mute'
+            : 'Only available on active slide'
+        );
+        btn.setAttribute('aria-pressed', String(idx === current && !activeMuted));
+      });
+    }
+
+
+    function syncPlayback() {
+      vids.forEach((v, idx) => {
+        if (!v) return;
+        if (idx === current) {
+          v.muted = activeMuted;
+          v.play?.().catch(() => {}); 
+        } else {
+          v.pause();
+          v.muted = true;
+        }
+      });
+    }
+
+    /** Updates the UI for the newly active slide */
+    function setActive(i: number) {
+      current = i;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('bg-[#114A2B]', idx === current);
+        dot.classList.toggle('bg-white', idx !== current);
+        dot.setAttribute('aria-current', String(idx === current));
+      });
+      syncPlayback();
+      updateMuteIcons();
+    }
+
+    function go(delta: number) {
+      setActive(clampIndex(current + delta));
+    }
+
+    function toggleMute() {
+      activeMuted = !activeMuted; 
+      syncPlayback();
+      updateMuteIcons(); 
+    }
+
+    function onCanPlay(idx: number) {
+      ready[idx] = true;
+      if (posters[idx]) {
+        posters[idx].style.opacity = '0'; // Hide poster
+      }
+      if (idx === current) syncPlayback();
+    }
+
+    const listeners = [
+      {
+        el: prevButton,
+        event: 'click',
+        handler: () => go(-1)
+      },
+      {
+        el: nextButton,
+        event: 'click',
+        handler: () => go(1)
+      }
+    ];
+
+    dots.forEach((dot, idx) => {
+      const handler = () => setActive(idx);
+      dot.addEventListener('click', handler);
+      listeners.push({ el: dot, event: 'click', handler });
+    });
+
+    vids.forEach((vid, idx) => {
+      const canPlayHandler = () => onCanPlay(idx);
+      vid.addEventListener('canplay', canPlayHandler);
+      listeners.push({ el: vid, event: 'canplay', handler: canPlayHandler });
+    });
+
+    muteButtons.forEach((btn, idx) => {
+      const handler = (e: Event) => {
+        e.stopPropagation();
+        if (idx === current) toggleMute();
+      };
+      btn.addEventListener('click', handler);
+      listeners.push({ el: btn, event: 'click', handler });
+    });
+
+    // Add initial listeners
+    listeners.forEach(({ el, event, handler }) => {
+      el.addEventListener(event, handler as EventListener);
+    });
+
+    //  Return Cleanup Function ---
+    return () => {
+      listeners.forEach(({ el, event, handler }) => {
+        el.removeEventListener(event, handler as EventListener);
+      });
+    };
+  }
+
+
+  let destroyTestimonials: (() => void) | null = null;
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      destroyTestimonials = initTestimonials();
+    },
+    { once: true }
+  );
+
+  document.addEventListener('astro:after-swap', () => {
+    destroyTestimonials?.();
+    destroyTestimonials = initTestimonials();
+  });
+
+  document.addEventListener(
+    'astro:before-swap',
+    () => {
+      destroyTestimonials?.();
+      destroyTestimonials = null;
+    },
+    { once: true }
+  );
+</script>

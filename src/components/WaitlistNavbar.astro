@@ -1,0 +1,66 @@
+<section class="fixed top-0 left-0 z-[80] w-full">
+  <div class="mx-auto sm:px-4 px-1 sm:pt-6 pt-2 lg:px-0">
+    <div class="flex items-center justify-between">
+      <div class="lg:w-1/4 w-auto">
+        <div class="flex flex-wrap items-center">
+          <div class="w-auto mx-auto md:pr-2">
+            <a href="/"><img src="/logo.png" class="md:w-60 w-28" alt="Zakayo" /></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 md:gap-4 md:mr-12">
+        <div class="navbar-menu-button z-50">
+          <button
+            id="back-btn"
+            class="nav-menu-button text-sm"
+            type="button"
+            aria-label="Go back"
+          >
+            <div>
+              <span class="inline-flex items-center gap-2">
+                <span id="burger-text" class="font-extrabold tracking-wide uppercase sm:text-sm text-xs"><i class="fa-solid fa-arrow-left"></i> BACK</span>
+              </span>
+            </div>
+          </button>
+        </div>
+
+      
+      </div>
+    </div>
+  </div>
+
+ 
+</section>
+
+<script is:inline>
+  (function () {
+    const backBtn = document.querySelector('#back-btn');
+    if (!backBtn) return;
+
+    backBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      if (window.history.length > 1) {
+        window.history.back();
+        return;
+      }
+
+      const ref = document.referrer;
+      if (ref) {
+        try {
+          const url = new URL(ref);
+          if (url.origin === window.location.origin) {
+            window.location.href = ref;
+            return;
+          }
+        } catch {
+        }
+      }
+
+      //  Last fallback: no history and no useful referrer → go home
+      window.location.href = '/';
+    });
+  })();
+</script>
+

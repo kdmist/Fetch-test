@@ -1,0 +1,40 @@
+{
+  "Untitled folder": [],
+  "test": [],
+  "ourwork": [],
+  "testimonials": [
+    "/testimonials/sarah.png",
+    "/testimonials/ruth-testimonial.mp4",
+    "/testimonials/jackline-testimonial.mp4",
+    "/testimonials/sarah-testimonial.mp4",
+    "/testimonials/evans.png",
+    "/testimonials/edwin-testimonial.mp4"
+  ],
+  "services": [
+    "/services/hare-family-4.png",
+    "/services/hare-personal-3.png",
+    "/services/hare-work-6.png",
+    "/services/hare-personal.png",
+    "/services/hare-personal-2.png",
+    "/services/hare-family.png",
+    "/services/hare-work-4.png",
+    "/services/hare-work.png",
+    "/services/hare-family-3.png",
+    "/services/hare-family-2.png"
+  ],
+  "public-root": [
+    "/waitlist-hare.webm",
+    "/work-icon.png",
+    "/third-emoji.png",
+    "/personal-icon.png",
+    "/logo.png",
+    "/family-icon.png",
+    "/dashboard-preview.mp4",
+    "/city-5-transparent.png",
+    "/dashboard.png",
+    "/first-emoji.png",
+    "/second-emoji.png",
+    "/fav.png",
+    "/sungura.png"
+  ]
+}

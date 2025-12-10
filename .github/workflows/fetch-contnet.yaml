@@ -54,8 +54,8 @@ jobs:
           merge: true
           delete-branch: true
           add-paths: |
-            apps/website/public/**
-            apps/website/src/data/media-map.json
-             apps/website/.drive-sync.json
+            ./public/**
+            ./src/data/media-map.json
+             ./.drive-sync.json
           rebase-strategy: keep  
           

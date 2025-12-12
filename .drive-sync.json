@@ -243,28 +243,7 @@
       }
     },
     "test folder": {
-      "files": {
-        "1-ArBbliqep7jzPu8jJgRZtkUlPGcVVfK": {
-          "name": "dashboard.png",
-          "modifiedTime": "2025-12-10T10:05:05.000Z",
-          "mimeType": "image/png"
-        },
-        "11C15OhCmq3CjahS8_OJAxMP_2BD9F5O1": {
-          "name": "family-icon.png",
-          "modifiedTime": "2025-12-10T10:05:05.000Z",
-          "mimeType": "image/png"
-        },
-        "1kzdMGBIaMXuBF2WJcz7oAMZOAscbxkQt": {
-          "name": "city-5-transparent.png",
-          "modifiedTime": "2025-12-10T10:05:05.000Z",
-          "mimeType": "image/png"
-        },
-        "1WPnLqsGyUt1rUlWJxtAoG1QahfXMsjtQ": {
-          "name": "fav.png",
-          "modifiedTime": "2025-12-10T09:51:24.000Z",
-          "mimeType": "image/png"
-        }
-      }
+      "files": {}
     }
   }
 }

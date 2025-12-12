@@ -55,10 +55,5 @@
     "/test1/first-emoji.png",
     "/test1/fav.png"
   ],
-  "test folder": [
-    "/test folder/dashboard.png",
-    "/test folder/family-icon.png",
-    "/test folder/city-5-transparent.png",
-    "/test folder/fav.png"
-  ]
+  "test folder": []
 }

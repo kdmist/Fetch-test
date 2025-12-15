@@ -243,7 +243,33 @@
       }
     },
     "test folder": {
-      "files": {}
+      "files": {
+        "10vTfSMdaKXChfv2Zzt0h2HquD-Rtd7Yj": {
+          "name": "second-emoji.png",
+          "modifiedTime": "2025-12-10T10:05:05.000Z",
+          "mimeType": "image/png"
+        },
+        "1iWVkBuJkpoLB840A55sRHbZt7k_IbhAB": {
+          "name": "first-emoji.png",
+          "modifiedTime": "2025-12-10T10:05:05.000Z",
+          "mimeType": "image/png"
+        },
+        "1RHUyAObqQ1EW8--_uCZjsf998K0VU_17": {
+          "name": "personal-icon.png",
+          "modifiedTime": "2025-12-10T10:05:05.000Z",
+          "mimeType": "image/png"
+        },
+        "1JyUwHRXY14h9oxhe9OVmWeigzmlRIqcB": {
+          "name": "city-5-transparent.png",
+          "modifiedTime": "2025-12-10T10:05:05.000Z",
+          "mimeType": "image/png"
+        },
+        "1s1GJ2rpqk5GeoNC62USTlGS_OtiAtV8W": {
+          "name": "logo.png",
+          "modifiedTime": "2025-12-10T09:51:17.000Z",
+          "mimeType": "image/png"
+        }
+      }
     }
   }
 }

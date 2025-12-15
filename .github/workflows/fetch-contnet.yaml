@@ -1,4 +1,4 @@
-name: Fetch Content (Staging Server)
+name: Fetch Content (staging)
 
 permissions:
   contents: write
@@ -44,16 +44,36 @@ jobs:
           GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: pnpm run fetch:drive
       
-      - name: Create PR for Fetched contrent
-        uses: peter-evans/create-pull-request@v6
-        with:
-          commit-message: 'ci: fetch(content): Sync files from Google Drive (Staging)'
-          branch: fetched-content
-          title: "ci: Fetched content from Google Drive"
-          base: master
-          delete-branch: true
-          add-paths: |
-            ./public/**
-            ./src/data/media-map.json
-             ./.drive-sync.json
+      - name: Commit fetched content
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b fetched-content
+
+          git add \
+            public \
+            src/data/media-map.json \
+            .drive-sync.json
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "ci: fetch(content): Sync files from Google Drive (Staging)"
+
+      - name: Push branch
+        run: git push origin fetched-content --force
+
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --base master \
+            --head fetched-content \
+            --title "ci: Fetched content from Google Drive" \
+            --body "Automated sync of files from Google Drive (Staging)."
+
           

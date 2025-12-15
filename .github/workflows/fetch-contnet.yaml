@@ -5,51 +5,42 @@ permissions:
   pull-requests: write
 
 on:
-  pull_request:
-    branches:
-      - master
   workflow_dispatch:
 
 jobs:
   fetch-content:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
-        with: 
-          ref: ${{ github.ref }}
-      
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 9
           run_install: false
-      
+
       - name: Setup Node.js 
         uses: actions/setup-node@v4
         with:
           node-version: 24.7.0
-          # cache: 'pnpm'
-      
+
       - name: Install Dependencies
-        # working-directory: apps/website
         run: pnpm install --no-frozen-lockfile
-      
+
       - name: Run Fetch Content Script
-        working-directory: .
         env:
           GOOGLE_SA_CLIENT_EMAIL: ${{ secrets.GOOGLE_SA_CLIENT_EMAIL }}
           GOOGLE_SA_PRIVATE_KEY: ${{ secrets.GOOGLE_SA_PRIVATE_KEY }}
           GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: pnpm run fetch:drive
-      
+
       - name: Commit fetched content
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git checkout -b fetched-content
+          git checkout -B fetched-content
 
           git add \
             public \
@@ -66,14 +57,24 @@ jobs:
       - name: Push branch
         run: git push origin fetched-content --force
 
-      - name: Create Pull Request
+      - name: Create or reuse Pull Request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          pr="$(gh pr list \
+            --base master \
+            --head fetched-content \
+            --state open \
+            --json number \
+            --jq '.[0].number')"
+
+          if [ -n "$pr" ] && [ "$pr" != "null" ]; then
+            echo "PR already exists (#$pr)"
+            exit 0
+          fi
+
           gh pr create \
             --base master \
             --head fetched-content \
             --title "ci: Fetched content from Google Drive" \
             --body "Automated sync of files from Google Drive (Staging)."
-
-          

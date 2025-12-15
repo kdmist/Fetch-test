@@ -1,4 +1,4 @@
-name: Fetch Content (stage)
+name: Fetch Content (staging)
 
 permissions:
   contents: write
